@@ -1,0 +1,46 @@
+# Preparing the database for regressions in Stata
+library(tidyverse)
+library(readxl)
+library(reshape2)
+library(dplyr)
+library(matlab)
+library(foreign)
+library(stringi)
+
+load("data/rdata/wiod_euk_ae_at.rdata")
+load("data/rdata/iea_pol_ind.RData")
+
+df <- wiod_euk_cap %>%
+  group_by(COU, ind) %>%
+  mutate(epg = log(ae)-lag(log(ae)),
+         atg = log(at)-lag(log(at))) %>%
+  ungroup() %>%
+  group_by(year, ind) %>%
+  mutate(avr_ep = mean(ae, na.rm = TRUE)) %>%
+  ungroup() %>%
+  group_by(year) %>%
+  mutate(med_avr_ep = median(avr_ep, na.rm = TRUE)) %>%
+  mutate(high_ep_2005 = ifelse(year == 2005 & avr_ep > med_avr_ep, 1, 0)) %>%
+  ungroup()
+
+
+high_ep_ind <- df %>% select(ind, high_ep_2005, year) %>%
+  filter(year == 2005) %>% select(-c(year))
+high_ep_ind <- high_ep_ind[!duplicated(high_ep_ind$ind), ] #DON'T FORGET THIS COMMA INSIDE THE BRACKETS!!!!!!!
+
+df <- left_join(df, high_ep_ind, by = "ind")
+df <- df %>% select(-c(high_ep_2005.x)) %>%
+  rename(high_ep_2005 = high_ep_2005.y)
+
+df <- df %>% mutate(COUyearind = paste(COU, year, ind, sep = "_"))
+
+
+df <- left_join(df, iea_pol_ind, by = "COUyearind")
+
+df_cum <- df[!duplicated(df$COUyearind),]
+    
+df_cum <- df_cum %>% 
+    select(COU, ind, year, ae, at, epg, atg, high_ep_2005, iea_pol_cum, iea_pol_cum_gr)
+
+save(df_cum, file = "data/rdata/df_cum.RData")
+write.dta(df_cum, "data/dta/df_cum.dta")
