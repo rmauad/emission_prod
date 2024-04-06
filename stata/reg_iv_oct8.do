@@ -76,7 +76,7 @@ xtreg atg iea_pol_cum_gr i.year
 capture program drop epg2sls
 program epg2sls
 * first stage regression
-xtreg epg iea_pol_cum_gr i.year
+xtreg epg iea_pol_cum_gr i.year, fe
 * get predicted values
 predict EPG_instrument
 * second stage regression
@@ -86,5 +86,10 @@ drop EPG_instrument
 drop EPG_instrumentXhigh_ep_2005
 end
 
-eststo: bootstrap, reps(200): epg2sls
-esttab using ep_growth.tex, replace label se ar2 stats(N) star(* 0.10 ** 0.05 *** 0.01) drop(*.year)
+eststo clear
+xtreg epg iea_pol_cum i.year, fe
+esttab using output/tex/ep_growth_1st.tex, replace label se ar2 stats(N F) star(* 0.10 ** 0.05 *** 0.01) drop(*.year _cons) scalar(F)
+
+
+bootstrap, reps(200): epg2sls
+esttab using output/tex/ep_growth.tex, replace label se ar2 stats(N) star(* 0.10 ** 0.05 *** 0.01) drop(*.year _cons)

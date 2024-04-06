@@ -32,12 +32,12 @@ country <- as.data.frame(cbind(COU, Country))
 iea_sel <- left_join(iea, country, by = "Country")
 iea_sel <- iea_sel %>% filter(!is.na(COU), !is.na(Sectors), Year <= 2015, Status == "In force" | Status == "Ended") %>%
   mutate(COUyear = paste(COU, Year, sep = "_")) %>%
-  select(COUyear, COU, Status, Sectors, Year)
+  select(COUyear, COU, Status, Sectors)
 
 #iea_sel <- iea_sel[!duplicated(iea_sel$COUyear), ]
 iea_pol <- iea_sel %>%
-  mutate(iea_pol_count = ifelse(Status == "In force", 1, -1)) %>% #only two options: in force or ended.
-  group_by(Year, COU, Sectors) %>% # this does not group by Sector for some reason
+  mutate(iea_pol_count = ifelse(Status == "In force", 1, -1)) %>%
+  group_by(COUyear, COU, Sectors) %>%
   summarize(iea_pol_count = sum(iea_pol_count)) %>%
   ungroup() %>%
   group_by(COU) %>%
