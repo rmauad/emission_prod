@@ -95,6 +95,7 @@ foreach depVar in `depVars' {
 
         * Save tex files
         esttab using "`fileName'.tex", replace label se ar2 star(* 0.10 ** 0.05 *** 0.01) 
+        esttab using "`fileName'.csv", replace label se ar2 star(* 0.10 ** 0.05 *** 0.01) 
 
         * Display a message indicating completion of this combination
         display "Output for `depVar' regressed on `indVar' saved to `fileName'.tex"
