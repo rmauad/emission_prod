@@ -20,19 +20,51 @@ rename COU1 COU
 egen panelid = group(COU ind), label
 xtset panelid year
 
-by panelid: g test = ln(L.ae)
-
 // Label variables
 gen epXhigh = ae*high_ep_2005
 
-label variable at   "Productivity"
-label variable ae   "Emission Productivity"
-label variable high_ep_2005   "High EP 2005"
-label variable atg   "Productivity Growth"
-label variable epg   "Emission Productivity Growth"
-label variable epXhigh   "Emission Productivity * High EP 2005"
-label variable iea_pol_cum   "IEA policies cumulative"
+capture quietly reghdfe at c.ae epXhigh, a(year)
+eststo dln_lab_prod_dln_ener_prod_lag1_noabs
+eststo test1
 
+capture quietly reghdfe ae c.at epXhigh, a(year)
+eststo test2
+capture esttab test1 test2 using Results_dln_lab_prod.tex, replace label se ar2 star(* 0.10 ** 0.05 *** 0.01) 
+
+// sort year
+// by year: summarize at ae epXhigh
+// estout using "sum_stats.tex", replace
+
+* Variables to summarize
+local vars at ae epXhigh
+
+* Generate summary statistics manually
+egen mean_at = mean(at), by(year)
+egen sd_at = sd(at), by(year)
+egen min_at = min(at), by(year)
+egen max_at = max(at), by(year)
+
+egen mean_ae = mean(ae), by(year)
+egen sd_ae = sd(ae), by(year)
+egen min_ae = min(ae), by(year)
+egen max_ae = max(ae), by(year)
+
+egen mean_epXhigh = mean(epXhigh), by(year)
+egen sd_epXhigh = sd(epXhigh), by(year)
+egen min_epXhigh = min(epXhigh), by(year)
+egen max_epXhigh = max(epXhigh), by(year)
+
+* Keep one record per group
+bysort year: gen tag = _n == 1
+keep year tag mean_at sd_at mean_ae sd_ae
+save summary_stats.dta, replace
+
+use summary_stats.dta, clear
+compress
+export excel using "summary_statistics.xlsx", firstrow(variables) replace
+
+graph box at ae epXhigh, over(year) title("test graph") 
+graph export "test_graph.png", replace
 
 // Regression without instrument (levels)
 eststo: xtreg at c.ae epXhigh i.year, cluster(ind)
