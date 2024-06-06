@@ -109,76 +109,37 @@ eststo clear
 **********************************
 
 * Indep: dln_lab_prod_lag1
-
-capture quietly reghdfe dln_ener_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dep_dlp_noabs
-
-capture quietly reghdfe dln_ener_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dep_dlp_id
-
-capture quietly reghdfe dln_ener_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dep_dlp_year
-
-capture quietly reghdfe dln_ener_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dep_dlp_id_year
+capture quietly eststo: reghdfe dln_ener_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_ener_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_ener_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_ener_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_lab_prod_factor_lag1
-
-capture quietly reghdfe dln_ener_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dep_dlpf_noabs
-
-capture quietly reghdfe dln_ener_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dep_dlpf_id
-
-capture quietly reghdfe dln_ener_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dep_dlpf_year
-
-capture quietly reghdfe dln_ener_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dep_dlpf_id_year
+capture quietly eststo: reghdfe dln_ener_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_ener_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_ener_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_ener_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_cap_prod_lag1
-
-capture quietly reghdfe dln_ener_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dep_dcp_noabs
-
-capture quietly reghdfe dln_ener_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dep_dcp_id
-
-capture quietly reghdfe dln_ener_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dep_dcp_year
-
-capture quietly reghdfe dln_ener_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dep_dcp_id_year
+capture quietly eststo: reghdfe dln_ener_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_ener_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_ener_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_ener_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_tfp_lag1
-
-capture quietly reghdfe dln_ener_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dep_dt_noabs
-
-capture quietly reghdfe dln_ener_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dep_dt_id
-
-capture quietly reghdfe dln_ener_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dep_dt_year
-
-capture quietly reghdfe dln_ener_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dep_dt_id_year
+capture quietly eststo: reghdfe dln_ener_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_ener_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_ener_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_ener_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_tfp_hassler_lag1
+capture quietly eststo: reghdfe dln_ener_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_ener_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_ener_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_ener_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
-capture quietly reghdfe dln_ener_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dep_dth_noabs
-
-capture quietly reghdfe dln_ener_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dep_dth_id
-
-capture quietly reghdfe dln_ener_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dep_dth_year
-
-capture quietly reghdfe dln_ener_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dep_dth_id_year
-
-esttab dep_dlp_noabs dep_dlp_id dep_dlp_year dep_dlp_id_year dep_dlpf_noabs dep_dlpf_id dep_dlpf_year dep_dlpf_id_year dep_dcp_noabs dep_dcp_id dep_dcp_year dep_dcp_id_year dep_dt_noabs dep_dt_id dep_dt_year dep_dt_id_year dep_dth_noabs dep_dth_id dep_dth_year dep_dth_id_year using Results_dln_ener_prod.tex, replace label se ar2 star(* 0.10 ** 0.05 *** 0.01) 
+esttab using Results_dln_ener_prod.tex, replace label se ar2 star(* 0.10 ** 0.05 *** 0.01) 
+esttab using Results_dln_ener_prod.csv, se ar2 stats(N r2) star(* 0.10 ** 0.05 *** 0.01) replace
 
 eststo clear
 ****************************************
@@ -186,76 +147,37 @@ eststo clear
 ****************************************
 
 * Indep: dln_lab_prod_lag1
-
-capture quietly reghdfe dln_prev_cont_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dpc_dlp_noabs
-
-capture quietly reghdfe dln_prev_cont_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dpc_dlp_id
-
-capture quietly reghdfe dln_prev_cont_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dpc_dlp_year
-
-capture quietly reghdfe dln_prev_cont_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dpc_dlp_id_year
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_lab_prod_factor_lag1
-
-capture quietly reghdfe dln_prev_cont_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dpc_dlpf_noabs
-
-capture quietly reghdfe dln_prev_cont_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dpc_dlpf_id
-
-capture quietly reghdfe dln_prev_cont_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dpc_dlpf_year
-
-capture quietly reghdfe dln_prev_cont_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dpc_dlpf_id_year
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_cap_prod_lag1
-
-capture quietly reghdfe dln_prev_cont_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dpc_dcp_noabs
-
-capture quietly reghdfe dln_prev_cont_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dpc_dcp_id
-
-capture quietly reghdfe dln_prev_cont_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dpc_dcp_year
-
-capture quietly reghdfe dln_prev_cont_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dpc_dcp_id_year
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_tfp_lag1
-
-capture quietly reghdfe dln_prev_cont_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dpc_dt_noabs
-
-capture quietly reghdfe dln_prev_cont_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dpc_dt_id
-
-capture quietly reghdfe dln_prev_cont_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dpc_dt_year
-
-capture quietly reghdfe dln_prev_cont_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dpc_dt_id_year
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_tfp_hassler_lag1
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_prev_cont_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
-capture quietly reghdfe dln_prev_cont_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dpc_dth_noabs
-
-capture quietly reghdfe dln_prev_cont_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dpc_dth_id
-
-capture quietly reghdfe dln_prev_cont_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dpc_dth_year
-
-capture quietly reghdfe dln_prev_cont_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dpc_dth_id_year
-
-esttab dpc_dlp_noabs dpc_dlp_id dpc_dlp_year dpc_dlp_id_year dpc_dlpf_noabs dpc_dlpf_id dpc_dlpf_year dpc_dlpf_id_year dpc_dcp_noabs dpc_dcp_id dpc_dcp_year dpc_dcp_id_year dpc_dt_noabs dpc_dt_id dpc_dt_year dpc_dt_id_year dpc_dth_noabs dpc_dth_id dpc_dth_year dpc_dth_id_year using Results_dln_prev_cont_prod.tex, replace label se ar2 star(* 0.10 ** 0.05 *** 0.01) 
+esttab using Results_dln_prev_cont_prod.tex, replace label se ar2 star(* 0.10 ** 0.05 *** 0.01) 
+esttab using Results_dln_prev_cont_prod.csv, se ar2 stats(N r2) star(* 0.10 ** 0.05 *** 0.01) replace
 
 eststo clear
 ****************************************
@@ -263,76 +185,37 @@ eststo clear
 ****************************************
 
 * Indep: dln_lab_prod_lag1
-
-capture quietly reghdfe dln_prot_environ_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dpep_dlp_noabs
-
-capture quietly reghdfe dln_prot_environ_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dpep_dlp_id
-
-capture quietly reghdfe dln_prot_environ_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dpep_dlp_year
-
-capture quietly reghdfe dln_prot_environ_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dpep_dlp_id_year
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_lab_prod_factor_lag1
-
-capture quietly reghdfe dln_prot_environ_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dpep_dlpf_noabs
-
-capture quietly reghdfe dln_prot_environ_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dpep_dlpf_id
-
-capture quietly reghdfe dln_prot_environ_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dpep_dlpf_year
-
-capture quietly reghdfe dln_prot_environ_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dpep_dlpf_id_year
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_cap_prod_lag1
-
-capture quietly reghdfe dln_prot_environ_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dpep_dcp_noabs
-
-capture quietly reghdfe dln_prot_environ_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dpep_dcp_id
-
-capture quietly reghdfe dln_prot_environ_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dpep_dcp_year
-
-capture quietly reghdfe dln_prot_environ_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dpep_dcp_id_year
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_tfp_lag1
-
-capture quietly reghdfe dln_prot_environ_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dpep_dt_noabs
-
-capture quietly reghdfe dln_prot_environ_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dpep_dt_id
-
-capture quietly reghdfe dln_prot_environ_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dpep_dt_year
-
-capture quietly reghdfe dln_prot_environ_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dpep_dt_id_year
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_tfp_hassler_lag1
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_prot_environ_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
-capture quietly reghdfe dln_prot_environ_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dpep_dth_noabs
-
-capture quietly reghdfe dln_prot_environ_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dpep_dth_id
-
-capture quietly reghdfe dln_prot_environ_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dpep_dth_year
-
-capture quietly reghdfe dln_prot_environ_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dpep_dth_id_year
-
-esttab dpep_dlp_noabs dpep_dlp_id dpep_dlp_year dpep_dlp_id_year dpep_dlpf_noabs dpep_dlpf_id dpep_dlpf_year dpep_dlpf_id_year dpep_dcp_noabs dpep_dcp_id dpep_dcp_year dpep_dcp_id_year dpep_dt_noabs dpep_dt_id dpep_dt_year dpep_dt_id_year dpep_dth_noabs dpep_dth_id dpep_dth_year dpep_dth_id_year using Results_dln_prot_environ_prod.tex, replace label se ar2 star(* 0.10 ** 0.05 *** 0.01) 
+esttab using Results_dln_prot_environ_prod.tex, replace label se ar2 star(* 0.10 ** 0.05 *** 0.01) 
+esttab using Results_dln_prot_environ_prod.csv, se ar2 stats(N r2) star(* 0.10 ** 0.05 *** 0.01) replace
 
 eststo clear
 ****************************************
@@ -340,73 +223,34 @@ eststo clear
 ****************************************
 
 * Indep: dln_lab_prod_lag1
-
-capture quietly reghdfe dln_green_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dgp_dlp_noabs
-
-capture quietly reghdfe dln_green_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dgp_dlp_id
-
-capture quietly reghdfe dln_green_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dgp_dlp_year
-
-capture quietly reghdfe dln_green_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dgp_dlp_id_year
+capture quietly eststo: reghdfe dln_green_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_green_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_green_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_green_prod dln_lab_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_lab_prod_factor_lag1
-
-capture quietly reghdfe dln_green_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dgp_dlpf_noabs
-
-capture quietly reghdfe dln_green_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dgp_dlpf_id
-
-capture quietly reghdfe dln_green_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dgp_dlpf_year
-
-capture quietly reghdfe dln_green_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dgp_dlpf_id_year
+capture quietly eststo: reghdfe dln_green_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_green_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_green_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_green_prod dln_lab_prod_factor_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_cap_prod_lag1
-
-capture quietly reghdfe dln_green_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dgp_dcp_noabs
-
-capture quietly reghdfe dln_green_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dgp_dcp_id
-
-capture quietly reghdfe dln_green_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dgp_dcp_year
-
-capture quietly reghdfe dln_green_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dgp_dcp_id_year
+capture quietly eststo: reghdfe dln_green_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_green_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_green_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_green_prod dln_cap_prod_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_tfp_lag1
-
-capture quietly reghdfe dln_green_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dgp_dt_noabs
-
-capture quietly reghdfe dln_green_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dgp_dt_id
-
-capture quietly reghdfe dln_green_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dgp_dt_year
-
-capture quietly reghdfe dln_green_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dgp_dt_id_year
+capture quietly eststo: reghdfe dln_green_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_green_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_green_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_green_prod dln_tfp_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
 * Indep: dln_tfp_hassler_lag1
+capture quietly eststo: reghdfe dln_green_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
+capture quietly eststo: reghdfe dln_green_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
+capture quietly eststo: reghdfe dln_green_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
+capture quietly eststo: reghdfe dln_green_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
 
-capture quietly reghdfe dln_green_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, noabs
-eststo dgp_dth_noabs
-
-capture quietly reghdfe dln_green_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id)
-eststo dgp_dth_id
-
-capture quietly reghdfe dln_green_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(year)
-eststo dgp_dth_year
-
-capture quietly reghdfe dln_green_prod dln_tfp_hassler_lag1 lag1_ln_emp indust_code lag1_debt_dummy lag1_inv_inc, a(id year)
-eststo dgp_dth_id_year
-
-esttab dgp_dlp_noabs dgp_dlp_id dgp_dlp_year dgp_dlp_id_year dgp_dlpf_noabs dgp_dlpf_id dgp_dlpf_year dgp_dlpf_id_year dgp_dcp_noabs dgp_dcp_id dgp_dcp_year dgp_dcp_id_year dgp_dt_noabs dgp_dt_id dgp_dt_year dgp_dt_id_year dgp_dth_noabs dgp_dth_id dgp_dth_year dgp_dth_id_year using Results_dln_green_prod.tex, replace label se ar2 star(* 0.10 ** 0.05 *** 0.01) 
+esttab using Results_dln_green_prod.tex, replace label se ar2 star(* 0.10 ** 0.05 *** 0.01) 
+esttab using Results_dln_green_prod.csv, se ar2 stats(N r2) star(* 0.10 ** 0.05 *** 0.01) replace
