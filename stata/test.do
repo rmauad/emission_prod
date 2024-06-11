@@ -54,8 +54,13 @@ estadd local fixed "id" , replace
 capture quietly eststo: reghdfe at c.ae i.year, a(panelid year)
 estadd local fixed "year id" , replace
 
-esttab using output/tex/test.tex, replace label se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01) 
-esttab using output/tex/AllP.csv, se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01) replace
+// capture quietly eststo: reghdfe c.ae i.year, noabs
+// estadd local fixed "no" , replace
+// capture quietly eststo: reghdfe c.ae i.year, a(year)
+// estadd local fixed "year" , replace
+
+esttab using output/tex/test.tex, replace label se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01) drop(*.year)
+esttab using output/tex/AllP.csv, se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01) replace drop(*.year)
 //stats(fixed N, label("Fixed effects"))
 outreg2 noabs year id idyear using output/tex/test, replace excel dec(3)
 
