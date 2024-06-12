@@ -60,7 +60,10 @@ estadd local fixed "year id" , replace
 // estadd local fixed "year" , replace
 
 esttab using output/tex/test.tex, replace label se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01) drop(*.year)
+
 esttab using output/tex/AllP.csv, se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01) replace drop(*.year)
+esttab using Results_dln_lab_prod.csv, se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01) replace
+
 //stats(fixed N, label("Fixed effects"))
 outreg2 noabs year id idyear using output/tex/test, replace excel dec(3)
 

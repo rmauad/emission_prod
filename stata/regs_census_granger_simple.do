@@ -156,5 +156,5 @@ estadd local fixed "Year" , replace
 capture quietly eststo: reghdfe dln_tfp_hassler dln_ener_prod_lag1 lag1_ln_emp lag1_debt_dummy lag1_inv_inc i.indust, a(id year)
 estadd local fixed "Entity and Year" , replace
 
-esttab using Results_dln_lab_prod.tex, replace label se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01) drop(*.indust)
-esttab using Results_dln_lab_prod.csv, se stats(fixed N r2, label("Fixed effects")) stats(N r2) star(* 0.10 ** 0.05 *** 0.01) replace drop(*.indust)
+esttab using Results_dln_lab_prod.tex, replace label se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01)
+esttab using Results_dln_lab_prod.csv, se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01) replace
