@@ -2,7 +2,7 @@
 // Same as reg_iv_dec20, but at the industry level
 // See variables labels: codebook varname
 
-use data/dta/df_cum.dta
+use data/dta/df_cum.dta, clear //from prep_dta.R
 winsor2 ae, replace cut(1 99) trim
 
 encode ind,gen(ind1)

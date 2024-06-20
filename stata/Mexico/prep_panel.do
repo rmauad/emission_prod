@@ -33,7 +33,6 @@ drop o511
 //o511: debt dummy in 2009
 //a211a: total investment
 
-
 rename m000a y
 rename h001d hours
 rename h114d hours_prod
@@ -45,7 +44,6 @@ rename h001a emp
 rename e17 indust
 rename o511a debt_dummy
 rename a211a inv
-
 
 ****************************************************************************************************************************
 * Generating variables/control variables: labor productivity, capital productivity, "green factor" productivity, size, etc.
@@ -64,10 +62,13 @@ scalar ggamma = 0.5
 scalar epsilon = 0.02
 g ln_tfp_hassler = ln(y) - alppha*ln(k) - (1-alppha)*ln(hours) + (epsilon/(epsilon-1))*(ln(hours/y) - ln(1-alppha) - ln(1-ggamma)) // this is At in the paper
 g ln_ener_prod = ln(y) - ln(energ) + (epsilon/(epsilon-1))*(ln(y/energ) - ln(ggamma)) // this is Ae in the paper
+g ener_prod = exp(ln_ener_prod)
 
-* Generating the "energy" productivity measures
-by id: g dln_ener_prod = ln_ener_prod - L.ln_ener_prod
-by id: g dln_ener_prod_lag1 = L.dln_ener_prod
+* Generating the "green factor" productivity measures
+g ln_prev_cont_prod = ln(y/prev_cont)
+g ln_prot_environ_prod = ln(y/prot_environ)
+egen green = rowtotal(prev_cont prot_environ)
+g ln_green_prod = ln(y/green)
 
 * Generating control variables
 by id: g lag1_ln_emp = ln(L.emp)
@@ -75,22 +76,26 @@ by id: g lag1_ln_emp = ln(L.emp)
 by id: g lag1_inv_inc = L.inv/L.y
 by id: g lag1_debt_dummy = L.debt_dummy
 
-*******************************************************************
-* Regressions of debt dummy on "green factor" productivity
-*******************************************************************
+* Generating dependent variables for the Granger causality tests
+by id: g dln_lab_prod = ln_lab_prod - L.ln_lab_prod
+by id: g dln_lab_prod_factor = ln_lab_prod_factor - L.ln_lab_prod_factor
+by id: g dln_cap_prod = ln_cap_prod - L.ln_cap_prod
+by id: g dln_tfp = ln_tfp - L.ln_tfp
+by id: g dln_tfp_hassler = ln_tfp_hassler - L.ln_tfp_hassler
 
-eststo clear
+* Generating independent variables for the Granger causality tests
+by id: g dln_ener_prod = ln_ener_prod - L.ln_ener_prod
+by id: g dln_ener_prod_lag1 = L.dln_ener_prod
 
-* Run regressions with different fixed effects specifications
-capture quietly eststo: reghdfe debt_dummy dln_ener_prod_lag1 lag1_ln_emp lag1_debt_dummy lag1_inv_inc i.indust, noabs
-estadd local fixed "No" , replace
-capture quietly eststo: reghdfe debt_dummy dln_ener_prod_lag1 lag1_ln_emp lag1_debt_dummy lag1_inv_inc i.indust, a(id)
-estadd local fixed "Entity" , replace
-capture quietly eststo: reghdfe debt_dummy dln_ener_prod_lag1 lag1_ln_emp lag1_debt_dummy lag1_inv_inc i.indust, a(year)
-estadd local fixed "Year" , replace
-capture quietly eststo: reghdfe debt_dummy dln_ener_prod_lag1 lag1_ln_emp lag1_debt_dummy lag1_inv_inc i.indust, a(id year)
-estadd local fixed "Entity and Year" , replace
+by id: g dln_prev_cont_prod = ln_prev_cont_prod - L.ln_prev_cont_prod
+by id: g dln_prev_cont_prod_lag1 = L.dln_prev_cont_prod
 
-esttab using debt_dummy.tex, replace label se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01)
-esttab using debt_dummy.csv, se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01) replace
+by id: g dln_prot_environ_prod = ln_prot_environ_prod - L.ln_prot_environ_prod
+by id: g dln_prot_environ_prod_lag1 = L.dln_prot_environ_prod
+
+by id: g dln_green_prod = ln_green_prod - L.ln_green_prod
+by id: g dln_green_prod_lag1 = L.dln_green_prod
+
+save data/dta/Panel_MuestraFicticia_complete.dta, replace
+
 

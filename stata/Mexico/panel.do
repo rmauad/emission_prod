@@ -40,8 +40,8 @@ save `path_dta'Insumo`year'_MuestraFicticia_year.dta, replace
 ****************************************************************************
 ** Summing the "green investment" variables fro 2014 and 2019
 ****************************************************************************
-
-local filename = "`path_dta'Insumo2019_MuestraFicticia.dta"
+local path_dta "data/dta/"
+local filename = "`path_dta'Insumo2019_MuestraFicticia_year.dta"
 use "`filename'", clear
 append using `path_dta'Insumo2014_MuestraFicticia_year.dta
 drop o603 o604 o605 o606 o607 d101
@@ -59,7 +59,6 @@ use "`filename'", clear
 append using `path_dta'Insumo2009_MuestraFicticia_year.dta
 drop NIC_NOP_2009
 save `path_dta'Panel_MuestraFicticia.dta, replace
-
 
 
 

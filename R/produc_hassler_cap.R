@@ -14,7 +14,7 @@ wiod_euk_cap <- wiod_euk_cap %>%
   mutate(e_share = x2_total/va_euk_usd,
          y_kl = va_euk_usd/(cap_usd^alpha*emp_h^(1-alpha)),
          ae = (1/e_share)*(e_share/gamma)^(epsilon/epsilon/(epsilon-1)),
-         at = y_kl*((1/lp)/(1-gamma))^(epsilon/epsilon/(epsilon-1)))
+         at = y_kl*((1/lp)/(1-gamma)*(1-alpha))^(epsilon/epsilon/(epsilon-1)))
 
 save(wiod_euk_cap, file = "data/rdata/wiod_euk_ae_at.rdata")
 
