@@ -1,4 +1,8 @@
 
+***********************************
+* Please change the path as needed 
+***********************************
+
 use data/dta/Panel_MuestraFicticia_complete.dta, clear
 
 * Saving the number of distinct industries in the Census
@@ -18,19 +22,33 @@ putexcel B2 = `nid'
 * Running industry classification
 by year indust, sort: egen avr_ln_ener_prod = mean(ln_ener_prod)
 by year indust, sort: egen med_ln_ener_prod = pctile(ln_ener_prod), p(50)
-keep if year == 2009
+keep if year == 1 //1 is 2009
 keep indust avr_ln_ener_prod med_ln_ener_prod
 rename avr_ln_ener_prod avr_ln_ener_prod_2009
 rename med_ln_ener_prod med_ln_ener_prod_2009
-duplicates drop 
+duplicates drop
+
+* Saving the number of distinct industries in 2009 only
+distinct indust 
+local numDistinct2009 = r(ndistinct) 
+putexcel set "distinct_firms_count.xlsx", modify
+putexcel C1 = ("Number of distinct industries in 2009:")
+putexcel C2 = `numDistinct2009'
+ 
+***********************************
+* Please change the path as needed 
+***********************************
 save data/dta/avr_ln_ener_prod.dta, replace
 
 use data/dta/Panel_MuestraFicticia_complete.dta, clear
-merge m:1 indust using avr_ln_ener_prod.dta
+merge m:1 indust using data/dta/avr_ln_ener_prod.dta
+keep if _merge == 3
+drop _merge
 
 * Running and saving the graph
 kdensity avr_ln_ener_prod_2009, title("Average log of Energy Productivity in 2009")  xtitle("Average log of Energy Productivity") ytitle("Density")
 
+//graph export "output/stata/density_avr_ln_energ_prod.png", replace
 graph export "density_avr_ln_energ_prod.png", replace
 
 
