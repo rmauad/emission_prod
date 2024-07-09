@@ -1,3 +1,6 @@
+* Installation command in case needed
+
+ssc install distinct
 
 ***********************************
 * Please change the path as needed 
