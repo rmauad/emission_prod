@@ -28,13 +28,13 @@ esttab using debt_ener_inv.csv, se stats(fixed N r2, label("Fixed effects")) sta
 
 * Indep: ener_inv_lag1
 eststo clear
-capture quietly eststo: xi: reghdfe ener_inv_lag1 debt_dummy_lag1 ln_emp_lag1 inv_inc_lag1 i.indust, noabs
+capture quietly eststo: xi: reghdfe debt_dummy ener_inv_lag1 debt_dummy_lag1 ln_emp_lag1 inv_inc_lag1 i.indust, noabs
 estadd local fixed "No" , replace
-capture quietly eststo: xi: reghdfe ener_inv_lag1 debt_dummy_lag1 ln_emp_lag1 inv_inc_lag1 i.indust, a(id)
+capture quietly eststo: xi: reghdfe debt_dummy ener_inv_lag1 debt_dummy_lag1 ln_emp_lag1 inv_inc_lag1 i.indust, a(id)
 estadd local fixed "Entity" , replace
-capture quietly eststo: xi: reghdfe ener_inv_lag1 debt_dummy_lag1 ln_emp_lag1 inv_inc_lag1 i.indust, a(year)
+capture quietly eststo: xi: reghdfe debt_dummy ener_inv_lag1 debt_dummy_lag1 ln_emp_lag1 inv_inc_lag1 i.indust, a(year)
 estadd local fixed "Year" , replace
-capture quietly eststo: xi: reghdfe ener_inv_lag1 debt_dummy_lag1 ln_emp_lag1 inv_inc_lag1 i.indust, a(id year)
+capture quietly eststo: xi: reghdfe debt_dummy ener_inv_lag1 debt_dummy_lag1 ln_emp_lag1 inv_inc_lag1 i.indust, a(id year)
 estadd local fixed "Entity and Year" , replace
 
 // esttab using output/tex/debt_ener_inv_lag1.tex, replace label se stats(fixed N r2, label("Fixed effects")) star(* 0.10 ** 0.05 *** 0.01)

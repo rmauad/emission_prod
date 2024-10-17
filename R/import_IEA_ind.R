@@ -1,9 +1,11 @@
 # Import IEA policy data at the industry level
 #install.packages('fuzzyjoin')
+# install.packages("writexl")
 library(readxl)
 library(dplyr)
 library(tidyr)
 library(fuzzyjoin)
+library(writexl)
 
 iea <- read_excel("data/excel/IEAData.xlsx", sheet = "IEA (1)")
 iea_ind <- read_excel("data/excel/IEAData.xlsx", sheet = "IEA Targeted Industry")
