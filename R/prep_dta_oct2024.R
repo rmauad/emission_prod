@@ -20,18 +20,23 @@ df <- wiod_euk_cap %>%
   mutate(avr_ep = mean(ae, na.rm = TRUE)) %>%
   ungroup() %>%
   group_by(year) %>%
-  mutate(med_avr_ep = median(avr_ep, na.rm = TRUE)) %>%
-  mutate(high_ep_2005 = ifelse(year == 2005 & avr_ep > med_avr_ep, 1, 0)) %>%
+  mutate(med_avr_ep = median(avr_ep, na.rm = TRUE),
+         perc_75_ep = quantile(avr_ep, 0.75, na.rm = TRUE),
+         perc_90_ep = quantile(avr_ep, 0.9, na.rm = TRUE)) %>%
+  mutate(high_ep_2005 = ifelse(year == 2005 & avr_ep > med_avr_ep, 1, 0),
+         high_75_ep_2005 = ifelse(year == 2005 & avr_ep > perc_75_ep, 1, 0),
+         high_90_ep_2005 = ifelse(year == 2005 & avr_ep > perc_90_ep, 1, 0)) %>%
   ungroup()
 
 
-high_ep_ind <- df %>% select(ind, high_ep_2005, year) %>%
+high_ep_ind <- df %>% select(ind, high_ep_2005, high_75_ep_2005, high_90_ep_2005, year) %>%
   filter(year == 2005) %>% select(-c(year))
 high_ep_ind <- high_ep_ind[!duplicated(high_ep_ind$ind), ] #DON'T FORGET THIS COMMA INSIDE THE BRACKETS!!!!!!!
 
+df <- df %>% select(-c(high_ep_2005, high_75_ep_2005, high_90_ep_2005))
 df <- left_join(df, high_ep_ind, by = "ind")
-df <- df %>% select(-c(high_ep_2005.x)) %>%
-  rename(high_ep_2005 = high_ep_2005.y)
+# df <- df %>% select(-c(high_ep_2005.x)) %>%
+#   rename(high_ep_2005 = high_ep_2005.y)
 
 df <- df %>% mutate(COUyearind = paste(COU, year, ind, sep = "_"))
 
@@ -41,7 +46,7 @@ df <- left_join(df, iea_pol_ind, by = "COUyearind")
 df_cum <- df[!duplicated(df$COUyearind),]
     
 df_cum <- df_cum %>% 
-    select(COU, ind, year, ae, at, epg, atg, atg_stock, high_ep_2005, iea_pol_cum, iea_pol_cum_gr)
+    select(COU, ind, year, ae, at, epg, atg, atg_stock, high_ep_2005, high_75_ep_2005, high_90_ep_2005, iea_pol_cum, iea_pol_cum_gr)
 
 save(df_cum, file = "data/rdata/df_cum.RData")
 write.dta(df_cum, "data/dta/df_cum.dta")

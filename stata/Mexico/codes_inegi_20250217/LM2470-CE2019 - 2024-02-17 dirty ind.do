@@ -4,11 +4,19 @@
 
 // ssc install distinct //In case needed
 
+// gl data "Z:\Procesamiento\Trabajo\Temp"
+// gl graphs "Z:\Resultados\LM2470-CE2019-2024-10-14-Figuras"
+// gl excel "Z:\Resultados\LM2470-CE2019-2024-10-14-Tablas"
+
+
 gl data "data/dta"
 gl graphs "output/graphs"
 gl excel "output/excel"
+// use "$data/Panel_complete_oct2024.dta", clear
 
-use "$data/Panel_complete_oct2024.dta", clear
+// use "$data\Panel_complete_feb2025.dta", clear
+use "$data/Panel_complete_feb2025.dta", clear
+
 
 g ind_2 = substr(indust, 1, 2)
 g ind_3 = substr(indust, 1, 3)
@@ -39,4 +47,5 @@ replace dirty_90 = 1 if ind_3 == "221"
 replace dirty_90 = 1 if ind_3 == "483"
 replace dirty_90 = 1 if ind_3 == "481"
 
-save "$data/Panel_industries_oct2024.dta", replace
+// save "$data\Panel_industries_feb2025.dta", replace
+save "$data/Panel_industries_feb2025.dta", replace

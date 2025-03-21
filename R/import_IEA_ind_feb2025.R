@@ -38,23 +38,12 @@ iea_sel <- iea_sel %>% filter(!is.na(COU), !is.na(Sectors), Year <= 2015, Status
 
 #iea_sel <- iea_sel[!duplicated(iea_sel$COUyear), ]
 iea_pol <- iea_sel %>%
-  mutate(iea_pol_count = ifelse(Status == "In force", 1, -1)) %>%
+  mutate(iea_pol_count = ifelse(Status == "In force", 1, 0)) %>%
   group_by(COUyear, COU, Sectors) %>%
   summarize(iea_pol_count = sum(iea_pol_count)) %>%
-  ungroup() %>%
-  group_by(COU) %>%
-  mutate(iea_pol_cum = cumsum(iea_pol_count)) %>%
-  ungroup()
+  ungroup() #%>%
 
-iea_pol[["iea_pol_cum"]][iea_pol[["iea_pol_cum"]] < 0] <- 0
-
-iea_pol_cum <- iea_pol %>%
-  group_by(COU) %>%
-  mutate(iea_pol_cum_gr = ifelse(iea_pol_cum != 0 & lag(iea_pol_cum) != 0, (iea_pol_cum - lag(iea_pol_cum))/lag(iea_pol_cum), NA)) %>%
-  ungroup() %>%
-  select("COUyear", "Sectors", "iea_pol_cum", "iea_pol_cum_gr")
-
-iea_pol_ind <- stringdist_join(iea_pol_cum, iea_ind, by = "Sectors", mode = "left", ignore_case = TRUE, method = "soundex")
+iea_pol_ind <- stringdist_join(iea_pol, iea_ind, by = "Sectors", mode = "left", ignore_case = TRUE, method = "soundex")
 
 iea_pol_ind <- iea_pol_ind %>% select(-c(Sectors.x, Sectors.y)) %>%
   rename(Sectors = Industry)
@@ -69,9 +58,9 @@ iea_pol_ind <- iea_pol_ind %>%
 iea_pol_ind <- left_join(iea_pol_ind, cw, by = "NACE")
 iea_pol_ind <- iea_pol_ind %>% filter(!is.na(ISIC)) %>%
   mutate(COUyearind = paste(COUyear, ISIC, sep = "_")) %>%
-  select(-c(NACE, COUyear))
+  select(-c(NACE, COUyear, COU))
 
-save(iea_pol_ind, file = "data/rdata/iea_pol_ind.Rdata")
+save(iea_pol_ind, file = "data/rdata/iea_pol_ind_feb2025.Rdata")
 ## Tests to solve the problem ####
 
 # a <- iea_pol_ind %>% select(Sectors.x, Sectors.y) %>%

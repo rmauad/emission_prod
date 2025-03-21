@@ -62,11 +62,16 @@ save(eu_klems_cap_comp, file = "data/rdata/eu_klems_cap.rdata")
 #####################################
 # Merging with the complete database
 #####################################
+source("code/emission_prod/R/calculate_capital_stock.R")
 
 wiod_euk_cap <- inner_join(wiod_euk, eu_klems_cap_comp, by = "cou_ind_year")
 
 wiod_euk_cap <- wiod_euk_cap %>%
-  mutate(cap_usd = cap*er)
+  mutate(cap_usd = cap*er) %>%
+  group_by(COU, ind) %>%
+  mutate(cap_stock_usd = calculate_capital_stock(cap_usd, depreciation_rate = 0.055, growth_rate = 0.02)) %>%
+  ungroup()
+
 
 save(wiod_euk_cap, file = "data/rdata/wiod_euk_cap.rdata")
 
